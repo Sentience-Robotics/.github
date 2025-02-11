@@ -27,11 +27,9 @@ Stay tuned for updates as we push the boundaries of AI-driven robotics! 🚀
 
 ## The team
 
-| Avatar | Nom |
-|--------|-----|
-| <div style="width:75px" align="center"><img src="https://github.com/Arcod7.png" width="50%"></div> | [Antoine ESMAN](https://github.com/Arcod7) |
-| <div style="width:75px" align="center"><img src="https://github.com/Cadavre-chan.png" width="50%"></div> | [Axel CHYPRE](https://github.com/Cadavre-chan) |
-| <div style="width:75px" align="center"><img src="https://github.com/charlesmadjeri.png" width="50%"></div> | [Charles MADJERI](https://github.com/charlesmadjeri) |
-| <div style="width:75px" align="center"><img src="https://github.com/m-brl.png" width="50%"></div> | [Mathieu BOREL](https://github.com/m-brl) |
-| <div style="width:75px" align="center"><img src="https://github.com/MatthiasvonRakowski.png" width="50%"></div> | [Matthias VON RAKOWSKI](https://github.com/MatthiasvonRakowski) |
-| <div style="width:75px" align="center"><img src="https://github.com/Mael-RABOT.png" width="50%"></div> | [Maël RABOT](https://github.com/Mael-RABOT) |
+- [Antoine ESMAN](https://github.com/Arcod7)
+- [Axel CHYPRE](https://github.com/Cadavre-chan)
+- [Charles MADJERI](https://github.com/charlesmadjeri)
+- [Mathieu BOREL](https://github.com/m-brl)
+- [Matthias VON RAKOWSKI](https://github.com/MatthiasvonRakowski)
+- [Maël RABOT](https://github.com/Mael-RABOT)
