@@ -33,3 +33,11 @@ Stay tuned for updates as we push the boundaries of AI-driven robotics! 🚀
 - [Mathieu BOREL](https://github.com/m-brl)
 - [Matthias VON RAKOWSKI](https://github.com/MatthiasvonRakowski)
 - [Maël RABOT](https://github.com/Mael-RABOT)
+
+## Licences
+
+All our project are licensed under the [GPL-3.0 License](https://www.gnu.org/licenses/gpl-3.0.fr.html) (GNU General Public License v3.0) if not otherwise specified.
+
+## Contact
+
+For any questions or inquiries, please contact us [here](mailto:contact@sentience-robotics.tech).
