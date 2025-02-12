@@ -30,9 +30,9 @@ Stay tuned for updates as we push the boundaries of AI-driven robotics! 🚀
 - [Antoine ESMAN](https://github.com/Arcod7)
 - [Axel CHYPRE](https://github.com/Cadavre-chan)
 - [Charles MADJERI](https://github.com/charlesmadjeri)
+- [Maël RABOT](https://github.com/Mael-RABOT)
 - [Mathieu BOREL](https://github.com/m-brl)
 - [Matthias VON RAKOWSKI](https://github.com/MatthiasvonRakowski)
-- [Maël RABOT](https://github.com/Mael-RABOT)
 
 ## Licences
 
