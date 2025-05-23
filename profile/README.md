@@ -34,7 +34,7 @@ Stay tuned for updates as we push the boundaries of AI-driven robotics! 🚀
 
 ## Documentation
 
-Our projects are fully documented, you can access said documentation at [docs.sentience-robotics.fr](docs.sentience-robotics.fr).
+Our projects are fully documented, you can access said documentation at [docs.sentience-robotics.fr](https://docs.sentience-robotics.fr).
 
 To log into the documentation, please use the following account :
 
