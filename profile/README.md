@@ -64,7 +64,7 @@ Our project is divided into 3 teams, each focusing on a specific aspect of the p
 
 ### Hardware Team
 
-- [Dorianne BALLU](https://www.linkedin.com/in/doriane-ballu-9b787324a/)
+- [Doriane BALLU](https://www.linkedin.com/in/doriane-ballu-9b787324a/)
 - [Nathan BREANT]()
 
 ## Licences
