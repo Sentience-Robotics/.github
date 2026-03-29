@@ -1,36 +1,52 @@
 # Sentience Robotics
 
-## Overview
+# Sentience Robotics
+**Open Source Ecosystem for Humanoid Interaction and Control**
 
-This project aims to develop an AI-driven software framework for humanoid robots, with InMoov as our primary testing platform.<br>
-Our goal is to create a system that enables natural and dynamic human-robot interaction by integrating advanced AI models, including a custom model developed by our team.
+Sentience Robotics is an initiative developing a modular, full-stack framework for humanoid robots. Our goal is to move beyond simple teleoperation by creating a cohesive system where high level AI driven interaction meets robust, real time hardware control.
 
-The software will control the entire robot, not just facial expressions, enabling full-body movement and lifelike interactions.<br>
-To enhance communication and interaction, we plan to integrate multiple AI models, such as large language models (LLMs), text-to-speech (TTS), and other specialized models.<br>
-These will allow the robot to understand, respond, and engage in meaningful conversations while adapting to different scenarios.  By leveraging NVIDIA Isaac ROS2, we optimize real-time processing and motion control, ensuring smooth and intelligent responses. While InMoov serves as our initial testbed, our software is designed to be adaptable to other robotic platforms in the future.  Our project aims to enhance human-machine interaction while encouraging research in this field, keeping everything open source.  The two main parts of the project (software side) are:  
+While our primary development and testing platform is [InMoov](https://inmoov.fr/), created by **Gael LANGEVIN**, our software architecture is designed to be adaptable to any humanoid platform.
 
+## Project Structure
 
-- LUCY: Creation of a framework enabling the use of any technology on the InMoov platform. We also include a safety layer using vision sensors to prevent accidents and harm.
-- HuRI (Human Robot Interaction): An AI focusing on speech-to-speech interaction with a framework for short, medium, and long-term memory, alongside providing movement to any robotic platform to make interaction more natural.
-- Thais: The team that builds and enhances the physical platform.
+### [LUCY](https://github.com/Sentience-Robotics/lucy_control_panel) | The Platform Bridge
+Lucy is the core interface layer. It serves as a ROS 2 based API that abstracts hardware complexities, allowing any robot to be controlled by external web clients or AI models.
+* **Architecture:** Built with a **C++ core** for performance critical tasks, utilizing **Python launch scripts** for orchestration.
+* **Hardware Control:** Integration with **ros2_control** to manage actuator states and command interfaces.
+* **Modeling:** Uses **Xacro based URDFs** to define robot kinematics, enabling transitions between simulation and real hardware.
+* **The Goal:** Connect any robotic platform to any high level controller by defining the actuator configuration and implementing a lightweight connection interface.
 
-### Why InMoov ?
+Alongside, we are also developing the Lucy Control Panel, a web interface that enables makers and researchers to monitor and control robotic platforms remotely.
 
-We chose **InMoov** because it is an **open-source (Creative Commons) robot platform** designed by French sculptor and designer **Gael Langevin**. Its open-source nature and the strong community behind it provide an ideal foundation for experimentation, collaboration, and continuous improvement.  
+---
+
+### [HuRI](https://github.com/Sentience-Robotics/HuRI) | Human-Robot Interaction
+HuRI is an AI centric framework focusing on how the machine speaks, remembers, and moves.
+* **Speech-to-Speech (S2S):** A custom pipeline that handles real time voice recognition, passes it through a multi model architecture, and outputs low latency speech.
+* **Memory Layers:** Implements a cognitive framework for short, medium, and long term memory, allowing the robot to maintain context over multiple sessions.
+* **Kinematic Grounding:** HuRI computes spatial points and transmits them to the robot, ensuring that arm, head, and facial movements are procedurally generated to match the conversation.
+
+---
+
+### Thais | Hardware and Fabrication
+The Thais team is responsible for the physical embodiment of the Sentience ecosystem.
+* **InMoov Integration:** Maintaining and enhancing our local InMoov builds, iterating on the original designs for better durability and integration with modern servos.
+* **Next-Gen Development:** We are currently prototyping a new hardware model designed to optimize the range of motion and weight distribution required for advanced HRI.
+
+## Our Open Source Pledge
+We believe that the future of robotics belongs to the community. Sentience Robotics is committed to keeping our software, documentation, and research open and accessible. By providing our tools under open source licenses, we aim to lower the barrier to entry for humanoid research and encourage a collaborative environment where developers can build upon our work without proprietary restrictions.
+
+## Technical Stack
+* **Middleware:** ROS 2 Humble
+* **Control Framework:** ros2_control
+* **Languages:** C++ for hardware interfaces and core API, Python for AI pipeline and launch system
+* **Hardware Modeling:** URDF, Xacro, Mesh processing
+* 
+### Why InMoov?
+
+We selected the **InMoov** platform, created by French sculptor and designer **Gael LANGEVIN**, as our primary testbed. Its **Creative Commons** licensing and established community make it an ideal foundation for rapid experimentation and collaborative development. By using a widely accessible open-source hardware standard, we ensure that our software remains verifiable and reproducible by researchers and makers worldwide.
 
 <img src="https://github.com/user-attachments/assets/5527703e-4fa9-4ef3-88d6-c5726f98082a" width="50%">
-
-## Technologies  
-- **AI Integration**: Combining pre-trained models with a custom AI developed by our team.  
-- **NVIDIA Isaac ROS2**: Leveraging NVIDIA's ROS2 framework for real-time robotic control and perception.  
-- **Hardware**: We are also constructing the **InMoov** platform, enhancing its capabilities for human-like interaction.  
-
-## Goals  
-- Create lifelike facial expressions controlled by AI.  
-- Seamlessly integrate custom and pre-existing AI models.  
-- Optimize performance using NVIDIA Isaac ROS2.  
-
-Stay tuned for updates as we push the boundaries of AI-driven robotics! 🚀
 
 ## Documentation
 
@@ -46,7 +62,7 @@ To log into the documentation, please use the following account :
 
 Our project is divided into 3 teams, each focusing on a specific aspect of the project:
 
-### Embedded Systems Team
+### Lucy // Embedded Systems Team
 
 - [Antoine ESMAN](https://github.com/Arcod7)
 - [Axel CHYPRE](https://github.com/Cadavre-chan)
@@ -55,14 +71,14 @@ Our project is divided into 3 teams, each focusing on a specific aspect of the p
 - [Mathieu BOREL](https://github.com/m-brl)
 - [Samuel BRUSCHET](https://github.com/sambrus)
 
-### AI Team
+### Huri // AI Team
 
 - [Adrien AUDIARD](https://github.com/Popochounet)
 - [Basile FOUQUET](https://github.com/b3ww)
 - [Matthias VON RAKOWSKI](https://github.com/MatthiasvonRakowski)
 - [Thomas POMMIER](https://github.com/thomas-pommier-epi)
 
-### Hardware Team
+### Thais // Hardware Team
 
 - [Doriane BALLU](https://www.linkedin.com/in/doriane-ballu-9b787324a/)
 - [Nathan BREANT]()
@@ -71,6 +87,13 @@ Our project is divided into 3 teams, each focusing on a specific aspect of the p
 
 All our project are licensed under the [GPL-3.0 License](https://www.gnu.org/licenses/gpl-3.0.fr.html) (GNU General Public License v3.0) if not otherwise specified.
 
+Parts of our projects that are derived from InMoov files (including Blender models, CAD files, and STL files) are based on the original work by **Gael LANGEVIN**.
+
+**Original Work:** InMoov by Gael Langevin  
+**License:** [Creative Commons Attribution-NonCommercial (CC BY-NC)](https://creativecommons.org/licenses/by-nc/4.0/)  
+**Source:** http://inmoov.fr/  
+**Applies to:** Blender files, CAD files, STL files, and other 3D models derived from InMoov
+
 ## Contact
 
-For any questions or inquiries, please contact us [here](mailto:contact@sentience-robotics.tech).
+For any questions or inquiries, please contact us [here](mailto:contact@sentience-robotics.fr).
