@@ -53,13 +53,7 @@ We selected the **InMoov** platform, created by French sculptor and designer **G
 
 ## Documentation
 
-Our projects are fully documented, you can access said documentation at [docs.sentience-robotics.fr](https://docs.sentience-robotics.fr).
-
-To log into the documentation, please use the following account :
-
-> email: `guest@sentience-robotics.tech`
-
-> password: `12345678`
+Our projects are fully documented, you can access said documentation at [docs.sentience-robotics.fr]([https://docs.sentience-robotics.fr](https://docs.sentience-robotics.fr/s/pub/p/public-documentation-EExgMX2REV)).
 
 ## The teams
 
