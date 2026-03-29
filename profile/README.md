@@ -71,7 +71,6 @@ Our project is divided into 3 teams, each focusing on a specific aspect of the p
 ### Huri // AI Team
 
 - [Adrien AUDIARD](https://github.com/Popochounet)
-- [Basile FOUQUET](https://github.com/b3ww)
 - [Matthias VON RAKOWSKI](https://github.com/MatthiasvonRakowski)
 - [Thomas POMMIER](https://github.com/thomas-pommier-epi)
 
