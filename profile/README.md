@@ -2,6 +2,10 @@
 
 **Open Source Ecosystem for Humanoid Interaction and Control**
 
+[![Discord](https://img.shields.io/discord/1272611839775084564?color=5865F2&label=Community&logo=discord&logoColor=white)](https://discord.gg/g4KNZ3eeBd)
+
+If you want to exchange on our projects, share ideas, or get involved, please join us on our Discord server.
+
 Sentience Robotics is an initiative developing a modular, full-stack framework for humanoid robots. Our goal is to move beyond simple teleoperation by creating a cohesive system where high level AI driven interaction meets robust, real time hardware control.
 
 While our primary development and testing platform is [InMoov](https://inmoov.fr/), created by **Gael LANGEVIN**, our software architecture is designed to be adaptable to any humanoid platform.
