@@ -39,6 +39,9 @@ The Thais team is responsible for the physical embodiment of the Sentience ecosy
 ## Our Open Source Pledge
 We believe that the future of robotics belongs to the community. Sentience Robotics is committed to keeping our software, documentation, and research open and accessible. By providing our tools under open source licenses, we aim to lower the barrier to entry for humanoid research and encourage a collaborative environment where developers can build upon our work without proprietary restrictions.
 
+## Getting started
+If you want to get started with our codebase, please look at the pinned repositories below.
+
 ## Technical Stack
 * **Middleware:** ROS 2 Humble
 * **Control Framework:** ros2_control
