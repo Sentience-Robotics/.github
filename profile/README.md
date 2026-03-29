@@ -1,6 +1,5 @@
 # Sentience Robotics
 
-# Sentience Robotics
 **Open Source Ecosystem for Humanoid Interaction and Control**
 
 Sentience Robotics is an initiative developing a modular, full-stack framework for humanoid robots. Our goal is to move beyond simple teleoperation by creating a cohesive system where high level AI driven interaction meets robust, real time hardware control.
