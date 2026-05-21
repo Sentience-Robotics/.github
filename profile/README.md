@@ -12,7 +12,7 @@ While our primary development and testing platform is [InMoov](https://inmoov.fr
 
 ## Project Structure
 
-### [LUCY](https://github.com/Sentience-Robotics/lucy_control_panel) | The Platform Bridge
+### [LUCY]([https://github.com/Sentience-Robotics/lucy_control_panel](https://github.com/Sentience-Robotics/lucy_ws)) | The Platform Bridge
 Lucy is the core interface layer. It serves as a ROS 2 based API that abstracts hardware complexities, allowing any robot to be controlled by external web clients or AI models.
 * **Architecture:** Built with a **C++ core** for performance critical tasks, utilizing **Python launch scripts** for orchestration.
 * **Hardware Control:** Integration with **ros2_control** to manage actuator states and command interfaces.
@@ -20,6 +20,8 @@ Lucy is the core interface layer. It serves as a ROS 2 based API that abstracts 
 * **The Goal:** Connect any robotic platform to any high level controller by defining the actuator configuration and implementing a lightweight connection interface.
 
 Alongside, we are also developing the Lucy Control Panel, a web interface that enables makers and researchers to monitor and control robotic platforms remotely.
+
+To get started, please visit the [Lucy Workspace repository](https://github.com/Sentience-Robotics/lucy_ws), which pack everything you need to quickly launch our project.
 
 ---
 
