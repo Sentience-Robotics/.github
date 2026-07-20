@@ -67,7 +67,7 @@ Our project is divided into 3 teams, each focusing on a specific aspect of the p
 ### Lucy // Embedded Systems Team
 
 - [Antoine ESMAN](https://github.com/Arcod7)
-- [Axel CHYPRE](https://github.com/Cadavre-chan)
+- [Axelle CHYPRE](https://github.com/Cadavre-chan)
 - [Charles MADJERI](https://github.com/charlesmadjeri)
 - [Maël RABOT](https://github.com/Mael-RABOT)
 - [Mathieu BOREL](https://github.com/m-brl)
