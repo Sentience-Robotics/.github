@@ -1,0 +1,50 @@
+name: Robot package CI
+
+on:
+  workflow_call:
+    inputs:
+      package_name:
+        description: ament package / src folder name
+        required: true
+        type: string
+      rosdep_skip_keys:
+        description: space-separated rosdep --skip-keys (optional)
+        required: false
+        type: string
+        default: "lucy_control_supervisor"
+      coverage_extra_paths:
+        description: extra dirs under the package to cover (e.g. scripts)
+        required: false
+        type: string
+        default: ""
+      pytest_disable_plugin_autoload:
+        description: isolate pytest plugins (needed when --cov + conflicting plugins)
+        required: false
+        type: boolean
+        default: true
+    secrets:
+      CODECOV_TOKEN:
+        required: false
+
+jobs:
+  build-and-test:
+    name: Build and test (${{ inputs.package_name }})
+    runs-on: ubuntu-latest
+    container:
+      image: osrf/ros:jazzy-desktop
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set COLCON_WS
+        run: |
+          echo "COLCON_WS=$(cd "${GITHUB_WORKSPACE}/.." && pwd)/colcon_ws" >> "${GITHUB_ENV}"
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        if: success()
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ${{ env.COLCON_WS }}/build/coverage_reports/${{ inputs.package_name }}.xml
+          flags: ${{ inputs.package_name }}
+          name: ${{ inputs.package_name }}
+          fail_ci_if_error: false
