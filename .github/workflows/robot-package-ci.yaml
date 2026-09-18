@@ -39,6 +39,110 @@ jobs:
         run: |
           echo "COLCON_WS=$(cd "${GITHUB_WORKSPACE}/.." && pwd)/colcon_ws" >> "${GITHUB_ENV}"
 
+      - name: Install tooling
+        run: |
+          sudo curl https://packages.osrfoundation.org/gazebo.gpg --output /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] https://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
+          apt-get update && apt-get install -y --no-install-recommends \
+            python3-rosdep \
+            python3-pytest \
+            python3-pytest-cov \
+            python3-yaml \
+            build-essential \
+            cmake \
+            git \
+            ros-jazzy-ros-gz \
+            ros-jazzy-gz-ros2-control
+          # Do not rm -rf /var/lib/apt/lists/* here; rosdep uses apt next and needs indexes.
+          rosdep init || true
+          rosdep update
+
+      - name: Workspace layout
+        run: |
+          set -e
+          mkdir -p "${COLCON_WS}/src"
+          cp -a "${GITHUB_WORKSPACE}" "${COLCON_WS}/src/${{ inputs.package_name }}"
+
+      - name: rosdep install
+        working-directory: ${{ env.COLCON_WS }}
+        shell: bash
+        run: |
+          set -e
+          apt-get update
+          source /opt/ros/jazzy/setup.bash
+          skip_keys=(${{ inputs.rosdep_skip_keys }})
+          rosdep_args=(--from-paths src --ignore-src -r -y)
+          if [ ${#skip_keys[@]} -gt 0 ]; then
+            for key in "${skip_keys[@]}"; do
+              [ -n "$key" ] || continue
+              rosdep_args+=(--skip-keys="$key")
+            done
+          fi
+          rosdep install "${rosdep_args[@]}"
+
+      - name: colcon build
+        working-directory: ${{ env.COLCON_WS }}
+        shell: bash
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          colcon build --symlink-install \
+            --packages-select ${{ inputs.package_name }} \
+            --cmake-args -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
+
+      - name: colcon test
+        working-directory: ${{ env.COLCON_WS }}
+        shell: bash
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          source install/setup.bash
+          if [ "${{ inputs.pytest_disable_plugin_autoload }}" = "true" ]; then
+            export PYTEST_DISABLE_PLUGIN_AUTOLOAD=1
+          fi
+          colcon test \
+            --packages-select ${{ inputs.package_name }} \
+            --event-handlers console_direct+ \
+            --pytest-args "--tb=short -vv"
+
+      - name: colcon test-result
+        working-directory: ${{ env.COLCON_WS }}
+        shell: bash
+        run: |
+          source /opt/ros/jazzy/setup.bash
+          source install/setup.bash
+          colcon test-result --verbose
+
+      - name: Code coverage (pytest-cov)
+        working-directory: ${{ env.COLCON_WS }}
+        shell: bash
+        if: success()
+        run: |
+          set -e
+          source /opt/ros/jazzy/setup.bash
+          source install/setup.bash
+          pkg="${{ inputs.package_name }}"
+          if [ "${{ inputs.pytest_disable_plugin_autoload }}" = "true" ]; then
+            export PYTEST_DISABLE_PLUGIN_AUTOLOAD=1
+          fi
+          mkdir -p build/coverage_reports
+          cov_args=(
+            --cov="src/${pkg}/launch"
+            --cov="src/${pkg}/test"
+          )
+          for extra in ${{ inputs.coverage_extra_paths }}; do
+            [ -n "$extra" ] || continue
+            cov_args+=(--cov="src/${pkg}/${extra}")
+          done
+          pytest_args=(src/"${pkg}"/test/)
+          if [ "${{ inputs.pytest_disable_plugin_autoload }}" = "true" ]; then
+            pytest_args+=(-p pytest_cov)
+          fi
+          python3 -m pytest "${pytest_args[@]}" \
+            "${cov_args[@]}" \
+            --cov-report="xml:build/coverage_reports/${pkg}.xml" \
+            --cov-report="html:build/coverage_reports/html_${pkg}" \
+            --cov-report=term-missing \
+            --cov-branch
+
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         if: success()
@@ -48,3 +152,11 @@ jobs:
           flags: ${{ inputs.package_name }}
           name: ${{ inputs.package_name }}
           fail_ci_if_error: false
+
+      - name: Upload coverage artifacts (XML + HTML)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-${{ inputs.package_name }}
+          path: ${{ env.COLCON_WS }}/build/coverage_reports/
+          retention-days: 14
